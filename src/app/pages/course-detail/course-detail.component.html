@@ -6,5 +6,27 @@
     <h1>Course Detail</h1>
   </div>
 
+  <form class="course-form" *ngIf="courseForm" [formGroup]="courseForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Название курса</mat-label>
+      <input formControlName="name" matInput>
+    </mat-form-field>
 
+    <mat-form-field appearance="fill">
+      <mat-label>Описание курса</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
+    <br>
+    <h3>Автор:</h3>
+    <div class="input-row" formGroupName="author">
+      <mat-form-field appearance="fill">
+        <mat-label>Имя</mat-label>
+        <input formControlName="firstName" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Фамилия</mat-label>
+        <input formControlName="lastName" matInput>
+      </mat-form-field>
+    </div>
+  </form>
 </div>
