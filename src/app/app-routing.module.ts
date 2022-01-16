@@ -16,6 +16,10 @@ const routes: Routes = [
         (m) => m.CourseDetailModule
       ),
   },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
