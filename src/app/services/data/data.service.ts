@@ -7,34 +7,33 @@ import { DurationUnit } from 'src/app/models/duration-unit.enum';
 import { randomString } from 'src/app/utils/random-string.function';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataService {
-
   constructor() {
     this.createCourse({
-      name: "Test course #1",
+      name: 'Test course #1',
       author: {
-        firstName: "John",
-        lastName: "Doe"
+        firstName: 'John',
+        lastName: 'Doe',
       },
       contents: [
-        { name: "First lesson", type: ContentsItemType.lesson },
-        { name: "Second lesson", type: ContentsItemType.lesson },
-        { name: "first stream", type: ContentsItemType.stream },
+        { name: 'First lesson', type: ContentsItemType.lesson },
+        { name: 'Second lesson', type: ContentsItemType.lesson },
+        { name: 'first stream', type: ContentsItemType.stream },
       ],
       plans: [
         {
-          name: "Free",
+          name: 'Free',
           price: 0,
           advantages: [
             {
               available: true,
-              title: "First Advantage"
+              title: 'First Advantage',
             },
             {
               available: false,
-              title: "Second advantage"
+              title: 'Second advantage',
             },
           ],
         },
@@ -55,7 +54,7 @@ export class DataService {
    * @type {Observable<Course[]>}
    */
   get courses$(): Observable<Course[]> {
-    return this._courses$.pipe(map(courses => Array.from(courses.values())));
+    return this._courses$.pipe(map((courses) => Array.from(courses.values())));
   }
 
   /**
@@ -67,8 +66,22 @@ export class DataService {
     const id = randomString();
     this._courses.set(id, <Course>{ ...data, id });
     this._courses$.next(this._courses);
-    await new Promise(r => setTimeout(r, (Math.random() * 1000) + 1000));
+    await new Promise((r) => setTimeout(r, Math.random() * 1000 + 1000));
     return id;
+  }
+
+  /**
+   * Get course by id
+   * @param {string} id course id
+   * @returns {Course} data course data
+   */
+  async getCourse(id: string): Promise<Course> {
+    const existCourse = this._courses.get(id);
+    if (!existCourse) {
+      throw new Error('Course not found');
+    }
+    await new Promise((r) => setTimeout(r, Math.random() * 1000 + 1000));
+    return existCourse;
   }
 
   /**
@@ -84,6 +97,6 @@ export class DataService {
     }
     this._courses.set(id, { ...existCourse, ...data });
     this._courses$.next(this._courses);
-    return new Promise<void>(r => setTimeout(r, (Math.random() * 1000) + 1000));
+    return new Promise<void>((r) => setTimeout(r, Math.random() * 1000 + 1000));
   }
 }
