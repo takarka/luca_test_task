@@ -1,0 +1,16 @@
+<h3>Длительность курса:</h3>
+<div class="input-row" [formGroup]="durationForm">
+  <mat-form-field appearance="fill">
+    <mat-label>Длительность</mat-label>
+    <input formControlName="value" matInput>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Единица измерения</mat-label>
+    <mat-select formControlName="unit">
+      <mat-option [value]="DurationUnit.hour">час</mat-option>
+      <mat-option [value]="DurationUnit.day">день</mat-option>
+      <mat-option [value]="DurationUnit.week">неделя</mat-option>
+      <mat-option [value]="DurationUnit.month">месяц</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

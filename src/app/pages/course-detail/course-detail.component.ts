@@ -56,6 +56,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         start: new FormControl(''),
         end: new FormControl(''),
       }),
+      duration: new FormControl(''),
     });
 
     this.subs.add(
