@@ -1,0 +1,21 @@
+<div class="input-row advantages">
+  <h3>Преимущества:</h3>
+  <button mat-icon-button color="primary" aria-label="button icon" (click)="addRow()">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<ng-container *ngIf="advantagesForm" [formGroup]="advantagesForm">
+  <ng-container formArrayName="advantages">
+    <div class="input-row advantages" *ngFor="let item of advantages?.controls;
+  let t=index" [formGroupName]="t">
+      <mat-form-field appearance="fill">
+        <mat-label>Название</mat-label>
+        <input formControlName="title" matInput>
+      </mat-form-field>
+      <mat-checkbox formControlName="available">Доступно</mat-checkbox>
+      <button mat-icon-button color="accent" aria-label="button icon" (click)="removeRow(t)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </ng-container>
+</ng-container>

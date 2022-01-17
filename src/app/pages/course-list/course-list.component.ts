@@ -17,6 +17,7 @@ export class CourseListComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.pageService.emitCurrentPageTitle('Каталог курсов');
+    this.pageService.emitCurrentPageLoading(false);
   }
   courses$ = this.dataService.courses$;
 

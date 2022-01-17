@@ -32,7 +32,6 @@ export class CoursePlanComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.planList.currentValue) {
-      console.log('planList: ', this.planList);
       this.planList.forEach((item) => {
         this.addRow(item);
       });
@@ -47,9 +46,8 @@ export class CoursePlanComponent implements OnInit, OnChanges {
     return this.coursePlanForm?.get('plans') as FormArray;
   }
 
-  public getPlanAdvantages(index: number): PlanAdvantage[] {
-    let list = this.planList[index].advantages;
-    return list ? list : [];
+  getPlanAdvantagesControl(index: number): FormArray {
+    return this.plans?.at(index)?.get('advantages') as FormArray;
   }
 
   addRow(value?: Plan): void {
@@ -57,12 +55,25 @@ export class CoursePlanComponent implements OnInit, OnChanges {
       new FormGroup({
         name: new FormControl(value?.name, [Validators.required]),
         price: new FormControl(value?.price, [Validators.required]),
-        advantages: new FormControl(value?.advantages, [Validators.required]),
+        advantages: new FormArray(this.setAdvantages(value?.advantages)),
       })
     );
   }
 
   removeRow(index: number): void {
     this.plans?.removeAt(index);
+  }
+
+  setAdvantages(advantages: PlanAdvantage[] | undefined): FormGroup[] {
+    let list: FormGroup[] = [];
+    advantages?.forEach((item) => {
+      list.push(
+        new FormGroup({
+          title: new FormControl(item?.title, [Validators.required]),
+          available: new FormControl(item?.available, [Validators.required]),
+        })
+      );
+    });
+    return list;
   }
 }
