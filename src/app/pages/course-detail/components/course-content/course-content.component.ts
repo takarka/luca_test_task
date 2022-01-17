@@ -46,7 +46,7 @@ export class CourseContentComponent implements OnInit, OnChanges {
   }
 
   addRow(value?: ContentsItem): void {
-    this.contents.push(
+    this.contents?.push(
       new FormGroup({
         name: new FormControl(value?.name, [Validators.required]),
         type: new FormControl(value?.type, [Validators.required]),
@@ -55,6 +55,6 @@ export class CourseContentComponent implements OnInit, OnChanges {
   }
 
   removeRow(index: number): void {
-    this.contents.removeAt(index);
+    this.contents?.removeAt(index);
   }
 }

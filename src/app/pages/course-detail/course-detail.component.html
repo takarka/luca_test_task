@@ -1,11 +1,4 @@
 <div class="container">
-  <div class="header">
-    <button mat-icon-button color="primary" aria-label="icon button" (click)="goBackToList()">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-    <h1>Course Detail</h1>
-  </div>
-
   <form class="course-form" *ngIf="courseForm" [formGroup]="courseForm">
     <mat-form-field appearance="fill">
       <mat-label>Название курса</mat-label>

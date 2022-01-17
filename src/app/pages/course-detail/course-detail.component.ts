@@ -7,6 +7,7 @@ import { ContentsItem } from 'src/app/models/contents-item.model';
 import { Course } from 'src/app/models/course.model';
 import { Plan } from 'src/app/models/plan.model';
 import { DataService } from 'src/app/services/data/data.service';
+import { PageService } from 'src/app/services/page-title.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -36,10 +37,13 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private activatedRouter: ActivatedRoute,
-    private readonly dataService: DataService
+    private readonly dataService: DataService,
+    private pageService: PageService
   ) {}
 
   ngOnInit(): void {
+    this.pageService.emitCurrentPageTitle('Описание курса');
+    this.pageService.emitCurrentPageLoading(true);
     this.subs.add(
       this.activatedRouter.params.subscribe((params) => {
         const courseId = params['id'];
@@ -78,8 +82,8 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
   getCourseData(courseId: string) {
     this.dataService.getCourse(courseId).then((course) => {
       this.course = course;
-      console.log('Course: ', this.course);
       this.courseForm?.patchValue(this.course);
+      this.pageService.emitCurrentPageLoading(false);
     });
   }
 

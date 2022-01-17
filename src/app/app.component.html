@@ -1,1 +1,9 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Example icon-button with menu icon" (click)="goHome()">
+    <mat-icon>home</mat-icon>
+  </button>
+  <span>{{ pageTitle}}</span>
+  <span class="spacer"></span>
+</mat-toolbar>
+<mat-progress-bar *ngIf="isPageLoading"  mode="indeterminate" color="accent"></mat-progress-bar>
 <router-outlet></router-outlet>
