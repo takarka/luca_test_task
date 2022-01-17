@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ContentsItem } from 'src/app/models/contents-item.model';
 import { Course } from 'src/app/models/course.model';
+import { Plan } from 'src/app/models/plan.model';
 import { DataService } from 'src/app/services/data/data.service';
 
 @Component({
@@ -20,6 +21,10 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
   get contentList(): ContentsItem[] {
     let list = this.course?.contents;
+    return list ? list : [];
+  }
+  get planList(): Plan[] {
+    let list = this.course?.plans;
     return list ? list : [];
   }
 
@@ -46,6 +51,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         lastName: new FormControl(''),
       }),
       contents: new FormArray([]),
+      plans: new FormArray([]),
     });
 
     this.subs.add(

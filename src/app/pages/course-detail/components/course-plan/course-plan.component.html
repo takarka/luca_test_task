@@ -1,0 +1,23 @@
+<ng-container *ngIf="coursePlanForm" [formGroup]="coursePlanForm">
+  <h3>План курса:</h3>
+  <ng-container formArrayName="plans">
+    <div class="input-row" *ngFor="let item of plans?.controls;
+    let i=index" [formGroupName]="i">
+      <mat-form-field appearance="fill">
+        <mat-label>Название</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Цена</mat-label>
+        <input formControlName="price" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Преимущества</mat-label>
+        <mat-select formControlName="advantages" multiple>
+          <mat-option *ngFor="let advantage of getPlanAdvantages(i)" [value]="advantage">{{advantage.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</ng-container>

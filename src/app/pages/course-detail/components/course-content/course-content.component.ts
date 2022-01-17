@@ -1,22 +1,15 @@
 import {
   Component,
-  forwardRef,
   Input,
   OnChanges,
   OnInit,
   SimpleChanges,
 } from '@angular/core';
 import {
-  AbstractControl,
   ControlContainer,
-  ControlValueAccessor,
   FormArray,
   FormControl,
   FormGroup,
-  NG_VALIDATORS,
-  NG_VALUE_ACCESSOR,
-  ValidationErrors,
-  Validator,
   Validators,
 } from '@angular/forms';
 import { ContentsItemType } from 'src/app/models/contents-item-type.enum';
@@ -57,8 +50,7 @@ export class CourseContentComponent implements OnInit, OnChanges {
       new FormGroup({
         name: new FormControl(value?.name, [Validators.required]),
         type: new FormControl(value?.type, [Validators.required]),
-      }),
-      { emitEvent: false }
+      })
     );
   }
 }

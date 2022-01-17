@@ -1,1 +1,2 @@
 export * from './course-content/course-content.component';
+export * from './course-plan/course-plan.component';
