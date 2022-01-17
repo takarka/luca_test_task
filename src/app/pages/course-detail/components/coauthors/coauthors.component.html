@@ -1,5 +1,11 @@
 <ng-container *ngIf="coauthorsForm" [formGroup]="coauthorsForm">
-  <h3>Соавторы:</h3>
+  <div class="input-row">
+    <h2>Соавторы:</h2>
+    <button mat-mini-fab aria-label="icon"  (click)="addRow()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <br>
   <ng-container formArrayName="coauthors">
     <div class="input-row" *ngFor="let item of coauthors?.controls;
     let i=index" [formGroupName]="i">
@@ -15,6 +21,6 @@
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-    <button mat-raised-button color="primary" (click)="addRow()">Добавить соавтор</button>
+
   </ng-container>
 </ng-container>

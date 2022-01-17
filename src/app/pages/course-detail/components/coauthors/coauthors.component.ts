@@ -52,6 +52,6 @@ export class CoauthorsComponent implements OnInit, OnChanges {
   }
 
   removeRow(index: number): void {
-    this.coauthors.removeAt(index);
+    this.coauthors?.removeAt(index);
   }
 }
