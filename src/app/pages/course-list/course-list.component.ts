@@ -1,8 +1,8 @@
+import { PageService } from './../../services/page-title.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Course } from 'src/app/models/course.model';
-import { DataService } from 'src/app/services/data/data.service';
-import { PageService } from 'src/app/services/page-title.service';
+import { DataService } from './../../services/data/data.service';
+import { Course } from './../../models/course.model';
 
 @Component({
   selector: 'app-course-list',

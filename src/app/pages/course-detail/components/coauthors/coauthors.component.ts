@@ -12,7 +12,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Author } from 'src/app/models/author.model';
+import { Author } from '../../../../models/author.model';
 
 @Component({
   selector: 'coauthors',

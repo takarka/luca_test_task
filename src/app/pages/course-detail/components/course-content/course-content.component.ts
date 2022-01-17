@@ -12,8 +12,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ContentsItemType } from 'src/app/models/contents-item-type.enum';
-import { ContentsItem } from 'src/app/models/contents-item.model';
+import { ContentsItemType } from '../../../../models/contents-item-type.enum';
+import { ContentsItem } from '../../../../models/contents-item.model';
 
 @Component({
   selector: 'course-content',

@@ -21,13 +21,6 @@
           <mat-label>Цена</mat-label>
           <input formControlName="price" matInput>
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
-        <mat-label>Преимущества</mat-label>
-        <mat-select formControlName="advantages" multiple>
-          <mat-option *ngFor="let advantage of getPlanAdvantages(i)" [value]="advantage">{{advantage.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field> -->
         <button mat-icon-button color="accent" aria-label="button icon" (click)="removeRow(i)">
           <mat-icon>delete</mat-icon>
         </button>

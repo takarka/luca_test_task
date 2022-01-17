@@ -6,7 +6,7 @@ import {
   NG_VALUE_ACCESSOR,
   Validators,
 } from '@angular/forms';
-import { DurationUnit } from 'src/app/models/duration-unit.enum';
+import { DurationUnit } from '../../../../models/duration-unit.enum';
 
 @Component({
   selector: 'duration',

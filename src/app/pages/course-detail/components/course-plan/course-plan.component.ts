@@ -13,8 +13,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ContentsItemType } from 'src/app/models/contents-item-type.enum';
-import { Plan } from 'src/app/models/plan.model';
+import { ContentsItemType } from '../../../../models/contents-item-type.enum';
+import { Plan } from '../../../../models/plan.model';
 
 @Component({
   selector: 'course-plan',

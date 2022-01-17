@@ -1,13 +1,13 @@
+import { PageService } from '../../services/page-title.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Author } from 'src/app/models/author.model';
-import { ContentsItem } from 'src/app/models/contents-item.model';
-import { Course } from 'src/app/models/course.model';
-import { Plan } from 'src/app/models/plan.model';
-import { DataService } from 'src/app/services/data/data.service';
-import { PageService } from 'src/app/services/page-title.service';
+import { ContentsItem } from '../../models/contents-item.model';
+import { Author } from '../../models/author.model';
+import { Course } from '../../models/course.model';
+import { Plan } from '../../models/plan.model';
+import { DataService } from '../../services/data/data.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -82,7 +82,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
   getCourseData(courseId: string) {
     this.dataService.getCourse(courseId).then((course) => {
       this.course = course;
-      this.courseForm?.patchValue(this.course);
+      this.courseForm?.patchValue(course);
       this.pageService.emitCurrentPageLoading(false);
     });
   }

@@ -1,11 +1,4 @@
-import { PlanAdvantage } from './../../../../models/plan-advantage.model';
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   ControlContainer,
   FormArray,
@@ -13,7 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Plan } from 'src/app/models/plan.model';
+import { PlanAdvantage } from './../../../../models/plan-advantage.model';
 
 @Component({
   selector: 'plan-advantages',
