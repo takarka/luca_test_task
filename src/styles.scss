@@ -14,11 +14,16 @@ body {
   flex-direction: row;
   gap: 20px;
 
-  h2{
+  h2 {
     margin: 5px 0;
   }
 }
 
+.row-index {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px;
+}
 mat-form-field {
   width: 100%;
 }

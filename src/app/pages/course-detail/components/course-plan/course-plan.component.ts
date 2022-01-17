@@ -61,4 +61,8 @@ export class CoursePlanComponent implements OnInit, OnChanges {
       })
     );
   }
+
+  removeRow(index: number): void {
+    this.plans?.removeAt(index);
+  }
 }

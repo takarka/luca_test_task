@@ -1,8 +1,17 @@
 <ng-container *ngIf="coursePlanForm" [formGroup]="coursePlanForm">
-  <h3>План курса:</h3>
+  <div class="input-row">
+    <h2>План курса:</h2>
+    <button mat-mini-fab aria-label="icon" (click)="addRow()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <br>
   <ng-container formArrayName="plans">
     <div class="input-row" *ngFor="let item of plans?.controls;
     let i=index" [formGroupName]="i">
+      <span class="row-index">
+        {{i+1}}
+      </span>
       <mat-form-field appearance="fill">
         <mat-label>Название</mat-label>
         <input formControlName="name" matInput>
@@ -11,13 +20,16 @@
         <mat-label>Цена</mat-label>
         <input formControlName="price" matInput>
       </mat-form-field>
-      <mat-form-field appearance="fill">
+      <!-- <mat-form-field appearance="fill">
         <mat-label>Преимущества</mat-label>
         <mat-select formControlName="advantages" multiple>
           <mat-option *ngFor="let advantage of getPlanAdvantages(i)" [value]="advantage">{{advantage.title}}
           </mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
+      <button mat-icon-button color="accent" aria-label="button icon" (click)="removeRow(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
   </ng-container>
 </ng-container>

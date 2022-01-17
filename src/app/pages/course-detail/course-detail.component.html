@@ -1,5 +1,6 @@
 <div class="container">
   <form class="course-form" *ngIf="courseForm" [formGroup]="courseForm">
+    <h2>О курсе:</h2>
     <mat-form-field appearance="fill">
       <mat-label>Название курса</mat-label>
       <input formControlName="name" matInput>
@@ -10,7 +11,7 @@
       <textarea formControlName="description" matInput></textarea>
     </mat-form-field>
     <br>
-    <h3>Автор:</h3>
+    <h2>Автор:</h2>
     <div class="input-row" formGroupName="author">
       <mat-form-field appearance="fill">
         <mat-label>Имя</mat-label>
@@ -26,8 +27,9 @@
     <course-content [contentList]="contentList"></course-content>
     <course-plan [planList]="planList"></course-plan>
 
+    <h2>Дата продажи:</h2>
     <mat-form-field appearance="fill" formGroupName="sales">
-      <mat-label>Дата продажи</mat-label>
+      <mat-label>Дата начала - Дата окончания</mat-label>
       <mat-date-range-input [rangePicker]="picker">
         <input formControlName="start" matStartDate placeholder="Дата начала">
         <input formControlName="end" matEndDate placeholder="Дата окончания">
