@@ -1,0 +1,19 @@
+<ng-container [formGroup]="parentForm">
+  <h3>Содержание курса:</h3>
+  <ng-container formArrayName="contents">
+    <div class="input-row" *ngFor="let address of courseContentForm.controls;
+    let i=index" [formGroupName]="i">
+      <mat-form-field appearance="fill">
+        <mat-label>Название контента</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Тип контента</mat-label>
+        <mat-select formControlName="type">
+          <mat-option [value]="ContentsItemType.lesson">Урок</mat-option>
+          <mat-option [value]="ContentsItemType.stream">Стрим</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </ng-container>
+</ng-container>

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Course } from 'src/app/models/course.model';
@@ -39,7 +39,9 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
       }),
+      contents: new FormControl(),
     });
+
   }
 
   getCourseData(courseId: string) {

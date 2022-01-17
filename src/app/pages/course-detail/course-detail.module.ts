@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import { CourseContentComponent } from './components';
 import { CourseDetailRoutingModule } from './course-detail-routing.module';
 import { CourseDetailComponent } from './course-detail.component';
 
 @NgModule({
-  declarations: [CourseDetailComponent],
+  declarations: [CourseDetailComponent, CourseContentComponent],
   imports: [
     CommonModule,
     CourseDetailRoutingModule,
@@ -16,6 +18,7 @@ import { CourseDetailComponent } from './course-detail.component';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSelectModule
   ],
 })
 export class CourseDetailModule {}
