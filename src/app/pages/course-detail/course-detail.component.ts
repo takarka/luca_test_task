@@ -52,6 +52,10 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
       }),
       contents: new FormArray([]),
       plans: new FormArray([]),
+      sales: new FormGroup({
+        start: new FormControl(''),
+        end: new FormControl(''),
+      }),
     });
 
     this.subs.add(
