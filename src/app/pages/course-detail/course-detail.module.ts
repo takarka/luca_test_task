@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
+  CoauthorsComponent,
   CourseContentComponent,
   CoursePlanComponent,
   DurationComponent,
@@ -21,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     CourseContentComponent,
     CoursePlanComponent,
     DurationComponent,
+    CoauthorsComponent,
   ],
   imports: [
     CommonModule,

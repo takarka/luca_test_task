@@ -1,0 +1,20 @@
+<ng-container *ngIf="coauthorsForm" [formGroup]="coauthorsForm">
+  <h3>Соавторы:</h3>
+  <ng-container formArrayName="coauthors">
+    <div class="input-row" *ngFor="let item of coauthors?.controls;
+    let i=index" [formGroupName]="i">
+      <mat-form-field appearance="fill">
+        <mat-label>Имя</mat-label>
+        <input formControlName="firstName" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Фамилия</mat-label>
+        <input formControlName="lastName" matInput>
+      </mat-form-field>
+      <button mat-icon-button color="accent" aria-label="button icon" (click)="removeRow(i)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+    <button mat-raised-button color="primary" (click)="addRow()">Добавить соавтор</button>
+  </ng-container>
+</ng-container>

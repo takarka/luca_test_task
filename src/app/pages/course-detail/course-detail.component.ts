@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Author } from 'src/app/models/author.model';
 import { ContentsItem } from 'src/app/models/contents-item.model';
 import { Course } from 'src/app/models/course.model';
 import { Plan } from 'src/app/models/plan.model';
@@ -19,6 +20,10 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
 
   public courseForm: FormGroup | undefined;
 
+  get coauthorList(): Author[] {
+    let list = this.course?.coauthors;
+    return list ? list : [];
+  }
   get contentList(): ContentsItem[] {
     let list = this.course?.contents;
     return list ? list : [];
@@ -50,6 +55,7 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
       }),
+      coauthors: new FormArray([]),
       contents: new FormArray([]),
       plans: new FormArray([]),
       sales: new FormGroup({
