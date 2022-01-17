@@ -60,8 +60,11 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
     });
 
     this.subs.add(
-      this.courseForm.valueChanges.subscribe((changes) => {
-        console.log('courseForm changed: ', changes);
+      this.courseForm.valueChanges.subscribe((updatedCourse: Course) => {
+        console.log('courseForm changed: ', updatedCourse);
+        if (updatedCourse?.id) {
+          this.dataService.updateCourse(updatedCourse.id, updatedCourse);
+        }
       })
     );
   }
