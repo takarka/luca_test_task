@@ -25,13 +25,13 @@ export class CourseContentComponent implements OnInit, OnChanges {
 
   public courseContentForm: FormGroup | undefined;
 
-  @Input() contentList: ContentsItem[] = [];
+  @Input() contentList: ContentsItem[] | undefined;
 
   constructor(private controlContainer: ControlContainer) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.contentList.currentValue) {
-      this.contentList.forEach((item) => {
+      this.contentList?.forEach((item) => {
         this.addRow(item);
       });
     }
@@ -52,5 +52,9 @@ export class CourseContentComponent implements OnInit, OnChanges {
         type: new FormControl(value?.type, [Validators.required]),
       })
     );
+  }
+
+  removeRow(index: number): void {
+    this.contents.removeAt(index);
   }
 }
