@@ -1,4 +1,11 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import {
+  Component,
+  forwardRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -19,73 +26,39 @@ import { ContentsItem } from 'src/app/models/contents-item.model';
   selector: 'course-content',
   templateUrl: './course-content.component.html',
   styleUrls: ['./course-content.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CourseContentComponent),
-      multi: true,
-    },
-    {
-      provide: NG_VALIDATORS,
-      useExisting: forwardRef(() => CourseContentComponent),
-      multi: true,
-    },
-  ],
 })
-export class CourseContentComponent
-  implements OnInit, ControlValueAccessor, Validator
-{
+export class CourseContentComponent implements OnInit, OnChanges {
   ContentsItemType = ContentsItemType;
-  public parentForm : FormGroup | any;
 
-  public courseContentForm: FormArray = new FormArray([]);
+  public courseContentForm: FormGroup | undefined;
+
+  @Input() contentList: ContentsItem[] = [];
+
   constructor(private controlContainer: ControlContainer) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.contentList.currentValue) {
+      this.contentList.forEach((item) => {
+        this.addRow(item);
+      });
+    }
+  }
+
   ngOnInit() {
-    this.parentForm = this.controlContainer.control;
+    this.courseContentForm = <FormGroup>this.controlContainer.control;
+  }
+
+  get contents(): FormArray {
+    return this.courseContentForm?.get('contents') as FormArray;
   }
 
   addRow(value?: ContentsItem): void {
-    this.courseContentForm.push(
+    this.contents.push(
       new FormGroup({
         name: new FormControl(value?.name, [Validators.required]),
         type: new FormControl(value?.type, [Validators.required]),
       }),
       { emitEvent: false }
     );
-  }
-
-  public onTouched: () => void = () => {};
-
-  writeValue(val: any): void {
-    val?.forEach((row: ContentsItem) => {
-      this.addRow(row);
-    });
-    console.log('courseContentForm: ', this.courseContentForm.value);
-    this.parentForm.get('contents').setValue(val, { emitEvent: false });
-    console.log('parentForm: ', this.parentForm.value);
-    // val && this.courseContentForm?.setValue(val, { emitEvent: false });
-  }
-  registerOnChange(fn: any): void {
-    this.courseContentForm?.valueChanges.subscribe(fn);
-  }
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-  setDisabledState?(isDisabled: boolean): void {
-    isDisabled
-      ? this.courseContentForm?.disable()
-      : this.courseContentForm?.enable();
-  }
-
-  validate(c: AbstractControl): ValidationErrors | null {
-    return this.courseContentForm?.valid
-      ? null
-      : {
-          invalidForm: {
-            valid: false,
-            message: 'courseContentForm fields are invalid',
-          },
-        };
   }
 }

@@ -1,7 +1,7 @@
-<ng-container [formGroup]="parentForm">
+<ng-container *ngIf="courseContentForm"  [formGroup]="courseContentForm">
   <h3>Содержание курса:</h3>
   <ng-container formArrayName="contents">
-    <div class="input-row" *ngFor="let address of courseContentForm.controls;
+    <div class="input-row" *ngFor="let address of contents.controls;
     let i=index" [formGroupName]="i">
       <mat-form-field appearance="fill">
         <mat-label>Название контента</mat-label>

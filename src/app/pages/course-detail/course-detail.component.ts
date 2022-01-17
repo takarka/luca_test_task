@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { ContentsItem } from 'src/app/models/contents-item.model';
 import { Course } from 'src/app/models/course.model';
 import { DataService } from 'src/app/services/data/data.service';
 
@@ -16,6 +17,11 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
   course: Course | undefined;
 
   public courseForm: FormGroup | undefined;
+
+  get contentList(): ContentsItem[] {
+    let list = this.course?.contents;
+    return list ? list : [];
+  }
 
   constructor(
     private router: Router,
@@ -39,9 +45,14 @@ export class CourseDetailComponent implements OnInit, OnDestroy {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
       }),
-      contents: new FormControl(),
+      contents: new FormArray([]),
     });
 
+    this.subs.add(
+      this.courseForm.valueChanges.subscribe((changes) => {
+        console.log('courseForm changed: ', changes);
+      })
+    );
   }
 
   getCourseData(courseId: string) {
