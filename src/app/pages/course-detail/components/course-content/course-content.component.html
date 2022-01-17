@@ -1,5 +1,11 @@
 <ng-container *ngIf="courseContentForm" [formGroup]="courseContentForm">
-  <h3>Содержание курса:</h3>
+  <div class="input-row">
+    <h2>Содержание курса:</h2>
+    <button mat-mini-fab aria-label="icon" (click)="addRow()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <br>
   <ng-container formArrayName="contents" *ngIf="contentList">
     <div class="input-row" *ngFor="let item of contents?.controls;
     let i=index" [formGroupName]="i">
@@ -18,6 +24,5 @@
         <mat-icon>delete</mat-icon>
       </button>
     </div>
-    <button mat-raised-button color="primary" (click)="addRow()">Добавить контент</button>
   </ng-container>
 </ng-container>
